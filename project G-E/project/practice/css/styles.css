@@ -1,0 +1,102 @@
+
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #24364e; /* Dark blue background color */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    
+    .container {
+        width: 400px;
+        padding: 20px;
+    }
+    
+    .login-box,.change-password-box, .code-entry-box , .reset-box{
+        background-color: #798ab97c;        /* filter: blur(1px); */
+        padding: 40px;
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        background: blur(10px);
+        /* Box shadow for a cool effect */
+    }
+  
+    
+    .title {
+        text-align: center;
+        color: #333; /* Text color */
+    }
+    
+    .login-form {
+        margin-top: 20px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #FFF; /* Label text color */
+    }
+    
+    .form-group input {
+        width: 97%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff; /* Button background color */
+        color: #fff; /* Button text color */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    button:hover {
+        background-color: #0056b3; /* Button hover background color */
+    }
+    #forgot-password
+    {
+        text-align: right;
+        color: #f7f8f9;
+    }
+
+
+
+
+    /* Your existing CSS styles here */
+
+.code-group {
+    display: flex;
+}
+
+.code-input {
+    width: 40px; /* Adjust width as needed */
+    height: 40px; /* Adjust height as needed */
+    margin-right: 10px; /* Adjust spacing between inputs */
+    text-align: center; /* Center text horizontally */
+    font-size: 1.2rem; /* Adjust font size as needed */
+    border: 1px solid #ccc; /* Border style */
+    border-radius: 5px; /* Rounded corners */
+}
+
+button {
+    margin-top: 12px; /* Adjust spacing between inputs and button */
+}
+
+
+
+
+
+

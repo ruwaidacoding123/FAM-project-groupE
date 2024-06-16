@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Management</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .product-container {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 600px;
+    backdrop-filter: blur(5px);
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  button[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  .edit-btn, .delete-btn {
+    padding: 6px 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  .edit-btn:hover, .delete-btn:hover {
+    background-color: #0056b3;
+  }
+
+  
+
+</style>
+</head>
+<body>
+  <div class="product-container">
+    <h2>Product Form</h2>
+    <form id="productForm">
+      <label for="categoryName">Category Name:</label>
+      <input type="text" id="categoryName" name="categoryName" required>
+
+      <label for="price">Price:</label>
+      <input type="number" id="price" name="price" min="0" step="0.01" required>
+
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" name="quantity" min="0" step="1" required>
+
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" required></textarea>
+
+      <button type="submit">Save</button>
+    </form>
+
+    
+  <table id="productTable">
+    <thead>
+      <tr>
+        <th>Category Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Table rows will be added dynamically -->
+    </tbody>
+  </table>
+    
+  </div>
+
+
+ 
+
+  <script>
+    // Function to create a new row in the table
+    function createTableRow(category, price, quantity, description) {
+      const tableBody = document.querySelector('#productTable tbody');
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <td>${category}</td>
+        <td>${price}</td>
+        <td>${quantity}</td>
+        <td>${description}</td>
+        <td>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </td>
+      `;
+      tableBody.appendChild(newRow);
+    }
+
+    // Function to handle form submission
+    document.getElementById('productForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      // Get form data
+      const formData = new FormData(this);
+      const category = formData.get('categoryName');
+      const price = formData.get('price');
+      const quantity = formData.get('quantity');
+      const description = formData.get('description');
+
+      // Create new row in the table
+      createTableRow(category, price, quantity, description);
+
+      // Reset the form
+      this.reset();
+    });
+
+    // Event delegation for Edit and Delete buttons
+    document.getElementById('productTable').addEventListener('click', function(event) {
+      const target = event.target;
+
+      if (target.classList.contains('edit-btn')) {
+        // Handle edit action
+        const row = target.closest('tr');
+        const cells = row.querySelectorAll('td');
+
+        // Populate form fields with table data for editing
+        document.getElementById('categoryName').value = cells[0].textContent;
+        document.getElementById('price').value = cells[1].textContent;
+        document.getElementById('quantity').value = cells[2].textContent;
+        document.getElementById('description').value = cells[3].textContent;
+
+        // Remove the row from the table
+        row.remove();
+      } else if (target.classList.contains('delete-btn')) {
+        // Handle delete action
+        const row = target.closest('tr');
+        row.remove();
+      }
+    });
+  </script>
+</body>
+</html>
